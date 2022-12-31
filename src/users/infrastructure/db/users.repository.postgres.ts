@@ -1,17 +1,15 @@
 import Message from "../../../context/responses/Message";
-import Auth from "../../domain/Auth";
 
 import User from "../../domain/User";
 import UsersRepository from "../../domain/users.repository";
 import executeQuery from "../../../context/db/postgres.connector";
 //security
-import { compare, hash } from "../../../context/security/hasher";
-import { createToken } from "../../../context/security/auth";
+import { compare, hash } from "../../../context/security/encrypter";
 
 export default class UsersRepositoryPostgres implements UsersRepository {
   async create(user: User): Promise<Message> {
     if (user.name && user.password) {
-      const result = await executeQuery(
+      await executeQuery(
         `insert into users values ('${user.name}','${hash(user.password)}')`
       );
       const message: Message = {

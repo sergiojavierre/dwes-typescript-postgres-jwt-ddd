@@ -4,8 +4,9 @@ const router = express.Router();
 //usecases
 import UsersUseCases from "../../application/users.usecases";
 //repository
-import UsersRepositoryPostgres from "../db/users.repository.postgres";
 import UsersRepository from "../../domain/users.repository";
+import UsersRepositoryPostgres from "../db/users.repository.postgres";
+//domain
 import User from "../../domain/User";
 import Auth from "../../domain/Auth";
 import Message from "../../../context/responses/Message";
